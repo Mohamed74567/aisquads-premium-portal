@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Squads Premium | Bounties</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #0f172a; --background: #f8fafc; }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--background); color: var(--primary); }
+    .outfit { font-family: 'Outfit', sans-serif; }
+    .nav-link { transition: all 0.3s ease; }
+    .nav-link:hover { background: #f1f5f9; transform: translateX(4px); }
+    .nav-active { background: var(--primary); color: white; }
+    .bounty-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .bounty-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05); }
+  </style>
+</head>
+<body class="min-h-screen flex">
+  
+  <aside class="w-72 border-r bg-white h-screen sticky top-0 flex flex-col p-8 hidden lg:flex">
+    <div class="mb-12">
+      <h1 class="text-2xl font-bold outfit flex items-center tracking-tight">
+        <span class="w-8 h-8 bg-blue-600 rounded-lg mr-3 flex items-center justify-center text-white text-sm">
+          <i class="fas fa-sparkles"></i>
+        </span>
+        AI Squads <span class="text-blue-600 ml-1">.</span>
+      </h1>
+    </div>
+    <nav class="space-y-1 flex-1">
+      <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-4 ml-3">Menu</p>
+      <a href="index.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-home-alt w-6"></i> Dashboard
+      </a>
+      <a href="cohort.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-users-viewfinder w-6"></i> My Cohort
+      </a>
+      <a href="bounties.html" class="nav-link nav-active flex items-center px-4 py-3 rounded-xl text-sm font-semibold">
+        <i class="fas fa-target-shot w-6"></i> Bounties
+      </a>
+      <a href="badges.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-medal w-6"></i> Achievements
+      </a>
+      <a href="leaderboard.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-ranking-stars w-6"></i> Leaderboard
+      </a>
+    </nav>
+  </aside>
+
+  <main class="flex-1 p-12 overflow-x-hidden">
+    <header class="flex justify-between items-end mb-12">
+      <div>
+        <h2 class="text-3xl font-bold outfit mb-2 tracking-tight">Active Bounties</h2>
+        <p class="text-slate-500 font-medium">Solve challenges, earn XP, and level up.</p>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bounty-card bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm group">
+        <div class="flex justify-between items-start mb-8">
+          <div class="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest">Technical</div>
+          <span class="text-xs font-bold text-slate-900">+1,200 XP</span>
+        </div>
+        <h3 class="text-xl font-bold outfit mb-4">Build a Custom Multi-Agent Orchestrator</h3>
+        <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8">Develop a system where specialized agents collaborate using AutoGen or CrewAI.</p>
+        <button class="w-full py-4 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-blue-600 hover:text-white transition-all">Accept Bounty</button>
+      </div>
+
+      <div class="bounty-card bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm group">
+        <div class="flex justify-between items-start mb-8">
+          <div class="px-4 py-1 bg-purple-50 text-purple-600 rounded-full text-[10px] font-bold uppercase tracking-widest">Community</div>
+          <span class="text-xs font-bold text-slate-900">+500 XP</span>
+        </div>
+        <h3 class="text-xl font-bold outfit mb-4">Portal Redesign UI/UX Challenge</h3>
+        <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8">Propose a new visual direction. Focus on premium human-centric design.</p>
+        <button class="w-full py-4 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl hover:bg-purple-600 hover:text-white transition-all">Accept Bounty</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

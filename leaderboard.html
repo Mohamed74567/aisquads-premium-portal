@@ -3,159 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard - AI Squads Portal</title>
+    <title>Leaderboard - AI Squads</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Outfit', sans-serif; background: #0a0c10; color: #e5e7eb; margin: 0; display: flex; height: 100vh; overflow: hidden; }
         .sidebar { width: 280px; background: #0d1117; border-right: 1px solid #1c2128; display: flex; flex-direction: column; padding: 24px; flex-shrink: 0; overflow-y: auto; }
         .main-content { flex-grow: 1; display: flex; flex-direction: column; background: #0a0c10; padding: 32px; overflow-y: auto; }
-        .card { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 20px; }
+        .card { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 24px; }
         .sidebar-profile { text-align: center; margin-bottom: 24px; }
-        .sidebar-profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #1c64f2; margin-bottom: 12px; }
-        .nav-pill { background: #161b22; border: 1px solid #30363d; padding: 8px 20px; border-radius: 9999px; font-size: 14px; font-weight: 500; color: #8b949e; cursor: pointer; transition: 0.2s; }
-        .nav-pill.active { background: #30363d; color: #fff; border-color: #6e7681; }
-        .nav-pill:hover:not(.active) { border-color: #8b949e; }
-        .btn-sidebar { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; text-align: left; font-size: 14px; margin-bottom: 12px; transition: 0.2s; color: #e5e7eb; }
-        .btn-sidebar:hover { background: #21262d; border-color: #8b949e; }
-        .leaderboard-row { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; gap-4: 16px; transition: 0.2s; }
-        .leaderboard-row:hover { border-color: #30363d; background: #161b22; }
-        .leaderboard-row.you { border-color: #1c64f2; background: rgba(28,100,242,0.05); }
-        .rank-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .btn-sidebar { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; text-align: left; font-size: 14px; margin-bottom: 12px; transition: 0.2s; color: #e5e7eb; text-decoration: none; }
+        .btn-sidebar:hover, .btn-sidebar.active { background: #21262d; border-color: #8b949e; }
+        .bottom-icons { display: flex; justify-content: space-between; margin-top: auto; padding-top: 24px; }
         .icon-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: #8b949e; cursor: pointer; transition: 0.2s; }
         .icon-btn:hover { color: #fff; border-color: #8b949e; }
-        .bottom-icons { display: flex; justify-content: space-between; margin-top: auto; padding-top: 24px; }
+        .leaderboard-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-radius: 12px; background: #161b22; border: 1px solid #30363d; transition: 0.2s; }
+        .leaderboard-row:hover { border-color: #6e7681; }
+        .leaderboard-row.highlighted { background: #161b22; border-color: #1c64f2; box-shadow: 0 0 0 1px #1c64f2; }
+        .rank-badge { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+        .member-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 14px; flex-shrink: 0; }
+        .profile-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #1c64f2; background: linear-gradient(135deg, #1c64f2, #7c3aed); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; color: #fff; margin: 0 auto 12px; }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-profile">
-            <img src="https://ca.slack-edge.com/T0266FRGM-U06K0G6G3-e847688c2f10-512" alt="Mohamed Eid">
-            <h2 class="text-xl font-bold">Mohamed Eid</h2>
-            <div class="mt-2 text-blue-500 text-xl">
-                <i class="fab fa-linkedin"></i>
-            </div>
+            <div class="profile-avatar">M</div>
+            <h2 class="text-base font-bold">Mohamed Eid</h2>
+            <p class="text-sm text-blue-400 mt-1">AI Squads Member</p>
         </div>
-        
-        <div class="card text-center mb-6">
-            <div class="text-2xl font-bold mb-1">0</div>
-            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider">Badges Earned</div>
+        <div class="card text-center mb-6" style="padding:12px;">
+            <div class="text-2xl font-bold text-blue-400">0</div>
+            <div class="text-xs text-gray-400 mt-1">Badges Earned</div>
         </div>
-
-        <button onclick="window.location.href='index.html'" class="btn-sidebar">
-            <span class="bg-gray-500/20 text-gray-400 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🏠</span>
-            <div>
-                <div class="font-bold text-gray-300">Dashboard</div>
-                <div class="text-[10px] text-gray-600">Overview of your activity</div>
-            </div>
-        </button>
-
-        <button onclick="window.location.href='bounties.html'" class="btn-sidebar">
-            <span class="bg-red-500/20 text-red-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🎯</span>
-            <div>
-                <div class="font-bold">Bounties</div>
-                <div class="text-[10px] text-gray-500">Claim projects & win rewards</div>
-            </div>
-        </button>
-
-        <button class="btn-sidebar">
-            <span class="bg-blue-500/20 text-blue-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🚀</span>
-            <div>
-                <div class="font-bold">Projects</div>
-                <div class="text-[10px] text-gray-500">Showcase what you've built</div>
-            </div>
-        </button>
-
+        <a href="index.html" class="btn-sidebar"><span>🏠</span> Home</a>
+        <a href="profile.html" class="btn-sidebar"><span>👤</span> Profile</a>
+        <a href="cohort.html" class="btn-sidebar"><span>🎓</span> Cohort #3</a>
+        <a href="badges.html" class="btn-sidebar"><span>🏅</span> Badges</a>
+        <a href="bounties.html" class="btn-sidebar"><span>🎯</span> Bounties</a>
+        <a href="leaderboard.html" class="btn-sidebar active"><span>🏆</span> Leaderboard</a>
         <div class="bottom-icons">
-            <div class="icon-btn">⚙️</div>
-            <div class="icon-btn">🚪</div>
-            <div onclick="window.location.href='squad.html'" class="icon-btn">👥</div>
+            <div class="icon-btn"><i class="fas fa-cog"></i></div>
+            <div class="icon-btn"><i class="fas fa-sign-out-alt"></i></div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <div class="flex justify-center gap-4 mb-12">
-            <div onclick="window.location.href='index.html'" class="nav-pill">🏠 Home</div>
-            <div onclick="window.location.href='squad.html'" class="nav-pill">👥 Squad</div>
-            <div onclick="window.location.href='cohort.html'" class="nav-pill">🎓 Cohort #3</div>
+        <h1 class="text-2xl font-bold mb-2">🏆 Leaderboard</h1>
+        <p class="text-gray-400 mb-8">Top performers in Cohort #3 — ranked by points, badges, and activity.</p>
+
+        <!-- Podium -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            <!-- 2nd -->
+            <div class="card text-center" style="padding:20px; margin-top: 20px;">
+                <div class="text-3xl mb-2">🦨</div>
+                <div class="member-avatar mx-auto mb-2" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">A</div>
+                <p class="font-semibold text-sm">Ahmed K.</p>
+                <p class="text-2xl font-bold text-gray-400 mt-1">#2</p>
+                <p class="text-sm text-purple-400 mt-1">340 pts</p>
+            </div>
+            <!-- 1st -->
+            <div class="card text-center" style="padding:20px; border-color: #f59e0b;">
+                <div class="text-3xl mb-2">👑</div>
+                <div class="member-avatar mx-auto mb-2" style="background: linear-gradient(135deg, #059669, #10b981);">S</div>
+                <p class="font-semibold text-sm">Sara M.</p>
+                <p class="text-2xl font-bold text-yellow-400 mt-1">#1</p>
+                <p class="text-sm text-yellow-400 mt-1">520 pts</p>
+            </div>
+            <!-- 3rd -->
+            <div class="card text-center" style="padding:20px; margin-top: 20px;">
+                <div class="text-3xl mb-2">🍿</div>
+                <div class="member-avatar mx-auto mb-2" style="background: linear-gradient(135deg, #dc2626, #f87171);">O</div>
+                <p class="font-semibold text-sm">Omar T.</p>
+                <p class="text-2xl font-bold text-orange-400 mt-1">#3</p>
+                <p class="text-sm text-orange-400 mt-1">210 pts</p>
+            </div>
         </div>
 
-        <div class="max-w-3xl mx-auto w-full">
-            <header class="mb-12">
-                <h1 class="text-4xl font-bold mb-2 tracking-tight">🏆 Leaderboard</h1>
-                <p class="text-gray-400 text-lg">Top performers in Cohort #3 — March 2026.</p>
-            </header>
-
-            <div class="space-y-3">
-                <div class="leaderboard-row flex items-center gap-4">
-                    <div class="rank-badge bg-yellow-500/20 text-yellow-400">1</div>
-                    <img src="https://i.pravatar.cc/40?u=user1" class="w-10 h-10 rounded-full border-2 border-yellow-500/30" alt="">
-                    <div class="flex-1">
-                        <div class="font-bold">Alex Chen</div>
-                        <div class="text-xs text-gray-500">5 badges · 3 bounties</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg font-bold text-yellow-400">1,240</div>
-                        <div class="text-[10px] text-gray-600">points</div>
-                    </div>
+        <!-- Full Rankings -->
+        <h3 class="text-lg font-semibold mb-4">Full Rankings</h3>
+        <div class="space-y-3">
+            <div class="leaderboard-row">
+                <div class="rank-badge" style="background:#f59e0b20; color:#f59e0b;">#1</div>
+                <div class="member-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">S</div>
+                <div class="flex-1">
+                    <p class="text-sm font-semibold">Sara M.</p>
+                    <p class="text-xs text-gray-400">5 badges &bull; 3 bounties</p>
                 </div>
-
-                <div class="leaderboard-row flex items-center gap-4">
-                    <div class="rank-badge bg-gray-400/20 text-gray-400">2</div>
-                    <img src="https://i.pravatar.cc/40?u=user2" class="w-10 h-10 rounded-full border-2 border-gray-500/30" alt="">
-                    <div class="flex-1">
-                        <div class="font-bold">Sarah Kim</div>
-                        <div class="text-xs text-gray-500">4 badges · 2 bounties</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg font-bold text-gray-300">980</div>
-                        <div class="text-[10px] text-gray-600">points</div>
-                    </div>
+                <div class="text-right">
+                    <p class="font-bold text-yellow-400">520</p>
+                    <p class="text-xs text-gray-500">pts</p>
                 </div>
-
-                <div class="leaderboard-row flex items-center gap-4">
-                    <div class="rank-badge bg-orange-500/20 text-orange-400">3</div>
-                    <img src="https://i.pravatar.cc/40?u=user3" class="w-10 h-10 rounded-full border-2 border-orange-500/30" alt="">
-                    <div class="flex-1">
-                        <div class="font-bold">Marcus Johnson</div>
-                        <div class="text-xs text-gray-500">4 badges · 1 bounty</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg font-bold text-orange-400">870</div>
-                        <div class="text-[10px] text-gray-600">points</div>
-                    </div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="rank-badge" style="background:#9ca3af20; color:#9ca3af;">#2</div>
+                <div class="member-avatar" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">A</div>
+                <div class="flex-1">
+                    <p class="text-sm font-semibold">Ahmed K.</p>
+                    <p class="text-xs text-gray-400">3 badges &bull; 2 bounties</p>
                 </div>
-
-                <div class="leaderboard-row flex items-center gap-4">
-                    <div class="rank-badge bg-gray-700/50 text-gray-500">4</div>
-                    <img src="https://i.pravatar.cc/40?u=user4" class="w-10 h-10 rounded-full border-2 border-gray-700" alt="">
-                    <div class="flex-1">
-                        <div class="font-bold">Priya Patel</div>
-                        <div class="text-xs text-gray-500">3 badges · 1 bounty</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg font-bold text-gray-400">720</div>
-                        <div class="text-[10px] text-gray-600">points</div>
-                    </div>
+                <div class="text-right">
+                    <p class="font-bold text-gray-300">340</p>
+                    <p class="text-xs text-gray-500">pts</p>
                 </div>
-
-                <div class="leaderboard-row you flex items-center gap-4">
-                    <div class="rank-badge bg-blue-500/20 text-blue-400">12</div>
-                    <img src="https://ca.slack-edge.com/T0266FRGM-U06K0G6G3-e847688c2f10-512" class="w-10 h-10 rounded-full border-2 border-blue-500/50" alt="">
-                    <div class="flex-1">
-                        <div class="font-bold text-blue-300">Mohamed Eid <span class="text-[10px] text-blue-500 ml-1">YOU</span></div>
-                        <div class="text-xs text-gray-500">1 badge · 0 bounties</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg font-bold text-blue-400">120</div>
-                        <div class="text-[10px] text-gray-600">points</div>
-                    </div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="rank-badge" style="background:#f97316 20; color:#f97316;">#3</div>
+                <div class="member-avatar" style="background: linear-gradient(135deg, #dc2626, #f87171);">O</div>
+                <div class="flex-1">
+                    <p class="text-sm font-semibold">Omar T.</p>
+                    <p class="text-xs text-gray-400">2 badges &bull; 1 bounty</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-bold text-orange-400">210</p>
+                    <p class="text-xs text-gray-500">pts</p>
+                </div>
+            </div>
+            <div class="leaderboard-row highlighted">
+                <div class="rank-badge" style="background:#1c64f220; color:#60a5fa;">#4</div>
+                <div class="member-avatar" style="background: linear-gradient(135deg, #1c64f2, #3b82f6);">M</div>
+                <div class="flex-1">
+                    <p class="text-sm font-semibold">Mohamed Eid <span class="text-xs text-blue-400 ml-1">(You)</span></p>
+                    <p class="text-xs text-gray-400">0 badges &bull; 0 bounties</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-bold text-blue-400">0</p>
+                    <p class="text-xs text-gray-500">pts</p>
                 </div>
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </body>
 </html>

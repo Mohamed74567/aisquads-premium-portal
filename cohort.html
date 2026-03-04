@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Squads Premium | My Cohort</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #3b82f6;
+      --background: #f8fafc;
+    }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--background); color: var(--primary); }
+    .outfit { font-family: 'Outfit', sans-serif; }
+    .nav-link { transition: all 0.3s ease; }
+    .nav-link:hover { background: #f1f5f9; transform: translateX(4px); }
+    .nav-active { background: var(--primary); color: white; }
+    .mentor-card { transition: all 0.3s ease; }
+    .mentor-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body class="min-h-screen flex">
+  
+  <aside class="w-72 border-r bg-white h-screen sticky top-0 flex flex-col p-8 hidden lg:flex">
+    <div class="mb-12">
+      <h1 class="text-2xl font-bold outfit flex items-center tracking-tight">
+        <span class="w-8 h-8 bg-blue-600 rounded-lg mr-3 flex items-center justify-center text-white text-sm">
+          <i class="fas fa-sparkles"></i>
+        </span>
+        AI Squads <span class="text-blue-600 ml-1">.</span>
+      </h1>
+    </div>
+    <nav class="space-y-1 flex-1">
+      <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-4 ml-3">Menu</p>
+      <a href="index.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-home-alt w-6"></i> Dashboard
+      </a>
+      <a href="cohort.html" class="nav-link nav-active flex items-center px-4 py-3 rounded-xl text-sm font-semibold">
+        <i class="fas fa-users-viewfinder w-6"></i> My Cohort
+      </a>
+      <a href="bounties.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-target-shot w-6"></i> Bounties
+      </a>
+      <a href="badges.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-medal w-6"></i> Achievements
+      </a>
+      <a href="leaderboard.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
+        <i class="fas fa-ranking-stars w-6"></i> Leaderboard
+      </a>
+    </nav>
+  </aside>
+
+  <main class="flex-1 p-12 overflow-x-hidden">
+    <header class="mb-12">
+      <h2 class="text-3xl font-bold outfit mb-2 tracking-tight">March 2026 Cohort</h2>
+      <p class="text-slate-500 font-medium">You are currently in Phase 2: System Architecture.</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-8">
+        <h3 class="text-xl font-bold outfit flex items-center gap-2">
+          <i class="fas fa-stream text-blue-600"></i> Course Journey
+        </h3>
+        
+        <div class="bg-white rounded-[2rem] p-10 border border-slate-100 shadow-sm relative overflow-hidden">
+          <div class="space-y-12 relative z-10 before:absolute before:left-4 before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-100">
+            <div class="relative pl-12">
+              <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-green-500 border-4 border-white shadow-sm flex items-center justify-center text-white text-[10px]">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-lg outfit">Phase 1: Foundations</h4>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Completed</span>
+              </div>
+              <p class="text-sm text-slate-500 font-medium">Core concepts of generative AI, transformer models, and prompt engineering fundamentals.</p>
+            </div>
+
+            <div class="relative pl-12">
+              <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-sm flex items-center justify-center text-white text-[10px] animate-pulse">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-lg outfit">Phase 2: System Architecture</h4>
+                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Current</span>
+              </div>
+              <p class="text-sm text-slate-500 font-medium">Building robust RAG systems, managing vector databases, and optimizing inference pipelines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <h3 class="text-xl font-bold outfit flex items-center gap-2">
+          <i class="fas fa-user-tie text-blue-600"></i> Your Mentors
+        </h3>
+        
+        <div class="mentor-card bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
+          <img src="https://i.pravatar.cc/150?u=mentor1" class="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-blue-50 shadow-sm" alt="Mentor">
+          <h4 class="font-bold outfit">Dr. Elena Rodriguez</h4>
+          <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-4">Senior ML Engineer @ OpenAI</p>
+          <div class="flex gap-2">
+            <button class="flex-1 py-3 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl">Message</button>
+            <button class="flex-1 py-3 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl">Schedule</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

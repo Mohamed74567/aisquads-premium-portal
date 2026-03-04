@@ -1,113 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Squads Premium | My Cohort</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #0f172a;
-      --accent: #3b82f6;
-      --background: #f8fafc;
-    }
-    body { font-family: 'DM Sans', sans-serif; background-color: var(--background); color: var(--primary); }
-    .outfit { font-family: 'Outfit', sans-serif; }
-    .nav-link { transition: all 0.3s ease; }
-    .nav-link:hover { background: #f1f5f9; transform: translateX(4px); }
-    .nav-active { background: var(--primary); color: white; }
-    .mentor-card { transition: all 0.3s ease; }
-    .mentor-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cohort - AI Squads Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #0a0c10; color: #e5e7eb; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 280px; background: #0d1117; border-right: 1px solid #1c2128; display: flex; flex-direction: column; padding: 24px; flex-shrink: 0; overflow-y: auto; }
+        .main-content { flex-grow: 1; display: flex; flex-direction: column; background: #0a0c10; padding: 32px; overflow-y: auto; }
+        .card { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 20px; }
+        .sidebar-profile { text-align: center; margin-bottom: 24px; }
+        .sidebar-profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #1c64f2; margin-bottom: 12px; }
+        .nav-pill { background: #161b22; border: 1px solid #30363d; padding: 8px 20px; border-radius: 9999px; font-size: 14px; font-weight: 500; color: #8b949e; cursor: pointer; transition: 0.2s; }
+        .nav-pill.active { background: #30363d; color: #fff; border-color: #6e7681; }
+        .nav-pill:hover:not(.active) { border-color: #8b949e; }
+        .btn-sidebar { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; text-align: left; font-size: 14px; margin-bottom: 12px; transition: 0.2s; color: #e5e7eb; }
+        .btn-sidebar:hover { background: #21262d; border-color: #8b949e; }
+        .timeline-line { position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: #1c2128; z-index: 0; }
+        .timeline-dot { width: 40px; height: 40px; border-radius: 50%; background: #11141b; border: 2px solid #1c2128; display: flex; align-items: center; justify-content: center; z-index: 10; position: relative; }
+        .timeline-dot.active { background: #1c64f2; border-color: #1c64f2; box-shadow: 0 0 15px rgba(28, 100, 242, 0.3); }
+        .timeline-dot.completed { background: #10b981; border-color: #10b981; }
+        .mentor-card { background: #11141b; border: 1px solid #1c2128; border-radius: 20px; padding: 24px; transition: 0.3s; }
+        .mentor-card:hover { border-color: #3b82f6; background: #161b22; transform: translateY(-4px); }
+        .icon-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: #8b949e; cursor: pointer; transition: 0.2s; }
+        .icon-btn:hover { color: #fff; border-color: #8b949e; }
+        .bottom-icons { display: flex; justify-content: space-between; margin-top: auto; padding-top: 24px; }
+    </style>
 </head>
-<body class="min-h-screen flex">
-  
-  <aside class="w-72 border-r bg-white h-screen sticky top-0 flex flex-col p-8 hidden lg:flex">
-    <div class="mb-12">
-      <h1 class="text-2xl font-bold outfit flex items-center tracking-tight">
-        <span class="w-8 h-8 bg-blue-600 rounded-lg mr-3 flex items-center justify-center text-white text-sm">
-          <i class="fas fa-sparkles"></i>
-        </span>
-        AI Squads <span class="text-blue-600 ml-1">.</span>
-      </h1>
-    </div>
-    <nav class="space-y-1 flex-1">
-      <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-4 ml-3">Menu</p>
-      <a href="index.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
-        <i class="fas fa-home-alt w-6"></i> Dashboard
-      </a>
-      <a href="cohort.html" class="nav-link nav-active flex items-center px-4 py-3 rounded-xl text-sm font-semibold">
-        <i class="fas fa-users-viewfinder w-6"></i> My Cohort
-      </a>
-      <a href="bounties.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
-        <i class="fas fa-target-shot w-6"></i> Bounties
-      </a>
-      <a href="badges.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
-        <i class="fas fa-medal w-6"></i> Achievements
-      </a>
-      <a href="leaderboard.html" class="nav-link flex items-center px-4 py-3 rounded-xl text-sm font-medium text-slate-500">
-        <i class="fas fa-ranking-stars w-6"></i> Leaderboard
-      </a>
-    </nav>
-  </aside>
-
-  <main class="flex-1 p-12 overflow-x-hidden">
-    <header class="mb-12">
-      <h2 class="text-3xl font-bold outfit mb-2 tracking-tight">March 2026 Cohort</h2>
-      <p class="text-slate-500 font-medium">You are currently in Phase 2: System Architecture.</p>
-    </header>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-      <div class="lg:col-span-2 space-y-8">
-        <h3 class="text-xl font-bold outfit flex items-center gap-2">
-          <i class="fas fa-stream text-blue-600"></i> Course Journey
-        </h3>
-        
-        <div class="bg-white rounded-[2rem] p-10 border border-slate-100 shadow-sm relative overflow-hidden">
-          <div class="space-y-12 relative z-10 before:absolute before:left-4 before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-100">
-            <div class="relative pl-12">
-              <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-green-500 border-4 border-white shadow-sm flex items-center justify-center text-white text-[10px]">
-                <i class="fas fa-check"></i>
-              </div>
-              <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-lg outfit">Phase 1: Foundations</h4>
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Completed</span>
-              </div>
-              <p class="text-sm text-slate-500 font-medium">Core concepts of generative AI, transformer models, and prompt engineering fundamentals.</p>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <img src="https://ca.slack-edge.com/T0266FRGM-U06K0G6G3-e847688c2f10-512" alt="Mohamed Eid">
+            <h2 class="text-xl font-bold">Mohamed Eid</h2>
+            <div class="mt-2 text-blue-500 text-xl">
+                <i class="fab fa-linkedin"></i>
             </div>
-
-            <div class="relative pl-12">
-              <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-sm flex items-center justify-center text-white text-[10px] animate-pulse">
-                <i class="fas fa-rocket"></i>
-              </div>
-              <div class="flex justify-between items-start mb-2">
-                <h4 class="font-bold text-lg outfit">Phase 2: System Architecture</h4>
-                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Current</span>
-              </div>
-              <p class="text-sm text-slate-500 font-medium">Building robust RAG systems, managing vector databases, and optimizing inference pipelines.</p>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <div class="space-y-8">
-        <h3 class="text-xl font-bold outfit flex items-center gap-2">
-          <i class="fas fa-user-tie text-blue-600"></i> Your Mentors
-        </h3>
         
-        <div class="mentor-card bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <img src="https://i.pravatar.cc/150?u=mentor1" class="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-blue-50 shadow-sm" alt="Mentor">
-          <h4 class="font-bold outfit">Dr. Elena Rodriguez</h4>
-          <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-4">Senior ML Engineer @ OpenAI</p>
-          <div class="flex gap-2">
-            <button class="flex-1 py-3 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl">Message</button>
-            <button class="flex-1 py-3 bg-slate-50 text-[10px] font-bold uppercase tracking-widest rounded-xl">Schedule</button>
-          </div>
+        <div class="card text-center mb-6">
+            <div class="text-2xl font-bold mb-1">0</div>
+            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider">Badges Earned</div>
         </div>
-      </div>
+
+        <button onclick="window.location.href='index.html'" class="btn-sidebar">
+            <span class="bg-gray-500/20 text-gray-400 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🏠</span>
+            <div>
+                <div class="font-bold text-gray-300">Dashboard</div>
+                <div class="text-[10px] text-gray-600">Overview of your activity</div>
+            </div>
+        </button>
+
+        <button onclick="window.location.href='bounties.html'" class="btn-sidebar">
+            <span class="bg-red-500/20 text-red-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🎯</span>
+            <div>
+                <div class="font-bold">Bounties</div>
+                <div class="text-[10px] text-gray-500">Claim projects & win rewards</div>
+            </div>
+        </button>
+
+        <button class="btn-sidebar">
+            <span class="bg-blue-500/20 text-blue-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🚀</span>
+            <div>
+                <div class="font-bold">Projects</div>
+                <div class="text-[10px] text-gray-500">Showcase what you've built</div>
+            </div>
+        </button>
+
+        <div class="bottom-icons">
+            <div class="icon-btn">⚙️</div>
+            <div class="icon-btn">🚪</div>
+            <div onclick="window.location.href='squad.html'" class="icon-btn">👥</div>
+        </div>
     </div>
-  </main>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="flex justify-center gap-4 mb-12">
+            <div onclick="window.location.href='index.html'" class="nav-pill">🏠 Home</div>
+            <div onclick="window.location.href='squad.html'" class="nav-pill">👥 Squad</div>
+            <div onclick="window.location.href='cohort.html'" class="nav-pill active">🎓 Cohort #3</div>
+        </div>
+
+        <div class="max-w-5xl mx-auto w-full">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold mb-2 tracking-tight">March 2026 Cohort</h1>
+                <p class="text-gray-400 text-lg">You are currently in Phase 2: System Architecture.</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
+                        <span class="text-blue-500">🎓</span> Course Journey
+                    </h3>
+                    
+                    <div class="relative pl-4 space-y-12">
+                        <div class="timeline-line"></div>
+                        <div class="relative flex gap-6">
+                            <div class="timeline-dot completed">
+                                <i class="fas fa-check text-white text-[10px]"></i>
+                            </div>
+                            <div class="card flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold">Phase 1: Foundations</h4>
+                                    <span class="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded">COMPLETED</span>
+                                </div>
+                                <p class="text-sm text-gray-400">Core concepts of generative AI and prompt engineering fundamentals.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex gap-6">
+                            <div class="timeline-dot active">
+                                <i class="fas fa-rocket text-white text-[10px]"></i>
+                            </div>
+                            <div class="card flex-1 border-blue-500/30 bg-blue-500/5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold text-blue-400">Phase 2: System Architecture</h4>
+                                    <span class="text-[10px] font-bold text-blue-400 bg-blue-400/10 px-2 py-1 rounded">CURRENT</span>
+                                </div>
+                                <p class="text-sm text-gray-300">Building robust RAG systems and managing vector databases.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex gap-6">
+                            <div class="timeline-dot">
+                                <i class="fas fa-lock text-gray-600 text-[10px]"></i>
+                            </div>
+                            <div class="card flex-1 opacity-50">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold">Phase 3: Production & Scaling</h4>
+                                    <span class="text-[10px] font-bold text-gray-500 bg-gray-500/10 px-2 py-1 rounded">LOCKED</span>
+                                </div>
+                                <p class="text-sm text-gray-500">Deploying LLMs at scale and monitoring performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
+                        <span class="text-purple-500">👔</span> Your Mentors
+                    </h3>
+                    <div class="mentor-card text-center">
+                        <img src="https://i.pravatar.cc/150?u=mentor1" class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-blue-500/30 p-1" alt="Mentor">
+                        <h4 class="font-bold text-lg">Dr. Elena Rodriguez</h4>
+                        <p class="text-xs text-blue-500 font-bold uppercase tracking-widest mb-6">Senior ML Engineer @ OpenAI</p>
+                        <div class="flex gap-2">
+                            <button class="flex-1 py-2 bg-white/5 hover:bg-white/10 text-xs font-bold rounded-lg transition">Message</button>
+                            <button class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-xs font-bold rounded-lg transition">Schedule</button>
+                        </div>
+                    </div>
+                    <div class="card p-6 bg-gradient-to-br from-indigo-600/10 to-blue-600/10 border-indigo-500/20">
+                        <h4 class="font-bold mb-2 text-sm">Need help?</h4>
+                        <p class="text-[11px] text-gray-400 mb-4">Join our daily office hours at 2 PM UTC for direct squad support.</p>
+                        <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-xs font-bold transition">Join Zoom</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </body>
 </html>

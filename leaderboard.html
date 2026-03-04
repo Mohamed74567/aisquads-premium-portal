@@ -3,93 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard - AI Squads</title>
+    <title>Leaderboard - AI Squads Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; background: #fafafa; }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .rank-top { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+        body { font-family: 'Outfit', sans-serif; background: #0a0c10; color: #e5e7eb; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 280px; background: #0d1117; border-right: 1px solid #1c2128; display: flex; flex-direction: column; padding: 24px; flex-shrink: 0; overflow-y: auto; }
+        .main-content { flex-grow: 1; display: flex; flex-direction: column; background: #0a0c10; padding: 32px; overflow-y: auto; }
+        .card { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 20px; }
+        .sidebar-profile { text-align: center; margin-bottom: 24px; }
+        .sidebar-profile img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #1c64f2; margin-bottom: 12px; }
+        .nav-pill { background: #161b22; border: 1px solid #30363d; padding: 8px 20px; border-radius: 9999px; font-size: 14px; font-weight: 500; color: #8b949e; cursor: pointer; transition: 0.2s; }
+        .nav-pill.active { background: #30363d; color: #fff; border-color: #6e7681; }
+        .nav-pill:hover:not(.active) { border-color: #8b949e; }
+        .btn-sidebar { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; text-align: left; font-size: 14px; margin-bottom: 12px; transition: 0.2s; color: #e5e7eb; }
+        .btn-sidebar:hover { background: #21262d; border-color: #8b949e; }
+        .leaderboard-row { background: #11141b; border: 1px solid #1c2128; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; gap-4: 16px; transition: 0.2s; }
+        .leaderboard-row:hover { border-color: #30363d; background: #161b22; }
+        .leaderboard-row.you { border-color: #1c64f2; background: rgba(28,100,242,0.05); }
+        .rank-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .icon-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: #8b949e; cursor: pointer; transition: 0.2s; }
+        .icon-btn:hover { color: #fff; border-color: #8b949e; }
+        .bottom-icons { display: flex; justify-content: space-between; margin-top: auto; padding-top: 24px; }
     </style>
 </head>
-<body class="text-slate-900">
-    <nav class="fixed top-0 w-full z-50 glass border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-                    <span class="text-white font-bold text-xl">A</span>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <img src="https://ca.slack-edge.com/T0266FRGM-U06K0G6G3-e847688c2f10-512" alt="Mohamed Eid">
+            <h2 class="text-xl font-bold">Mohamed Eid</h2>
+            <div class="mt-2 text-blue-500 text-xl">
+                <i class="fab fa-linkedin"></i>
+            </div>
+        </div>
+        
+        <div class="card text-center mb-6">
+            <div class="text-2xl font-bold mb-1">0</div>
+            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider">Badges Earned</div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" class="btn-sidebar">
+            <span class="bg-gray-500/20 text-gray-400 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🏠</span>
+            <div>
+                <div class="font-bold text-gray-300">Dashboard</div>
+                <div class="text-[10px] text-gray-600">Overview of your activity</div>
+            </div>
+        </button>
+
+        <button onclick="window.location.href='bounties.html'" class="btn-sidebar">
+            <span class="bg-red-500/20 text-red-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🎯</span>
+            <div>
+                <div class="font-bold">Bounties</div>
+                <div class="text-[10px] text-gray-500">Claim projects & win rewards</div>
+            </div>
+        </button>
+
+        <button class="btn-sidebar">
+            <span class="bg-blue-500/20 text-blue-500 w-8 h-8 rounded-lg flex items-center justify-center text-sm">🚀</span>
+            <div>
+                <div class="font-bold">Projects</div>
+                <div class="text-[10px] text-gray-500">Showcase what you've built</div>
+            </div>
+        </button>
+
+        <div class="bottom-icons">
+            <div class="icon-btn">⚙️</div>
+            <div class="icon-btn">🚪</div>
+            <div onclick="window.location.href='squad.html'" class="icon-btn">👥</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="flex justify-center gap-4 mb-12">
+            <div onclick="window.location.href='index.html'" class="nav-pill">🏠 Home</div>
+            <div onclick="window.location.href='squad.html'" class="nav-pill">👥 Squad</div>
+            <div onclick="window.location.href='cohort.html'" class="nav-pill">🎓 Cohort #3</div>
+        </div>
+
+        <div class="max-w-3xl mx-auto w-full">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold mb-2 tracking-tight">🏆 Leaderboard</h1>
+                <p class="text-gray-400 text-lg">Top performers in Cohort #3 — March 2026.</p>
+            </header>
+
+            <div class="space-y-3">
+                <div class="leaderboard-row flex items-center gap-4">
+                    <div class="rank-badge bg-yellow-500/20 text-yellow-400">1</div>
+                    <img src="https://i.pravatar.cc/40?u=user1" class="w-10 h-10 rounded-full border-2 border-yellow-500/30" alt="">
+                    <div class="flex-1">
+                        <div class="font-bold">Alex Chen</div>
+                        <div class="text-xs text-gray-500">5 badges · 3 bounties</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-yellow-400">1,240</div>
+                        <div class="text-[10px] text-gray-600">points</div>
+                    </div>
                 </div>
-                <span class="text-xl font-bold tracking-tight">AI SQUADS</span>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-500">
-                <a href="index.html" class="hover:text-indigo-600 transition-colors">Dashboard</a>
-                <a href="cohort.html" class="hover:text-indigo-600 transition-colors">Cohort</a>
-                <a href="bounties.html" class="hover:text-indigo-600 transition-colors">Bounties</a>
-                <a href="badges.html" class="hover:text-indigo-600 transition-colors">Badges</a>
-            </div>
-            <div class="w-10 h-10 rounded-full bg-slate-100 border-2 border-white shadow-sm"></div>
-        </div>
-    </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
-        <header class="mb-16 text-center">
-            <h1 class="text-5xl font-bold mb-4 tracking-tight">Top Performers</h1>
-            <p class="text-slate-500 text-lg mx-auto max-w-2xl">The most active and skilled agents in the current cohort.</p>
-        </header>
+                <div class="leaderboard-row flex items-center gap-4">
+                    <div class="rank-badge bg-gray-400/20 text-gray-400">2</div>
+                    <img src="https://i.pravatar.cc/40?u=user2" class="w-10 h-10 rounded-full border-2 border-gray-500/30" alt="">
+                    <div class="flex-1">
+                        <div class="font-bold">Sarah Kim</div>
+                        <div class="text-xs text-gray-500">4 badges · 2 bounties</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-gray-300">980</div>
+                        <div class="text-[10px] text-gray-600">points</div>
+                    </div>
+                </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-end">
-            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center h-64 flex flex-col justify-center">
-                <div class="text-2xl mb-2">🥈</div>
-                <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-4 border-2 border-white shadow-sm"></div>
-                <h3 class="font-bold text-lg">Sarah.ai</h3>
-                <p class="text-indigo-600 font-bold">2,450 XP</p>
-            </div>
-            <div class="rank-top p-10 rounded-[3rem] shadow-2xl shadow-indigo-200 text-center text-white h-80 flex flex-col justify-center transform -translate-y-4">
-                <div class="text-4xl mb-2">👑</div>
-                <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full mx-auto mb-4 border-2 border-white/50 shadow-sm"></div>
-                <h3 class="font-bold text-2xl">AlexDev</h3>
-                <p class="text-white/80 font-bold text-lg">3,100 XP</p>
-            </div>
-            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center h-56 flex flex-col justify-center">
-                <div class="text-2xl mb-2">🥉</div>
-                <div class="w-16 h-16 bg-slate-100 rounded-full mx-auto mb-4 border-2 border-white shadow-sm"></div>
-                <h3 class="font-bold text-lg">JordanK</h3>
-                <p class="text-indigo-600 font-bold">2,100 XP</p>
+                <div class="leaderboard-row flex items-center gap-4">
+                    <div class="rank-badge bg-orange-500/20 text-orange-400">3</div>
+                    <img src="https://i.pravatar.cc/40?u=user3" class="w-10 h-10 rounded-full border-2 border-orange-500/30" alt="">
+                    <div class="flex-1">
+                        <div class="font-bold">Marcus Johnson</div>
+                        <div class="text-xs text-gray-500">4 badges · 1 bounty</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-orange-400">870</div>
+                        <div class="text-[10px] text-gray-600">points</div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-row flex items-center gap-4">
+                    <div class="rank-badge bg-gray-700/50 text-gray-500">4</div>
+                    <img src="https://i.pravatar.cc/40?u=user4" class="w-10 h-10 rounded-full border-2 border-gray-700" alt="">
+                    <div class="flex-1">
+                        <div class="font-bold">Priya Patel</div>
+                        <div class="text-xs text-gray-500">3 badges · 1 bounty</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-gray-400">720</div>
+                        <div class="text-[10px] text-gray-600">points</div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-row you flex items-center gap-4">
+                    <div class="rank-badge bg-blue-500/20 text-blue-400">12</div>
+                    <img src="https://ca.slack-edge.com/T0266FRGM-U06K0G6G3-e847688c2f10-512" class="w-10 h-10 rounded-full border-2 border-blue-500/50" alt="">
+                    <div class="flex-1">
+                        <div class="font-bold text-blue-300">Mohamed Eid <span class="text-[10px] text-blue-500 ml-1">YOU</span></div>
+                        <div class="text-xs text-gray-500">1 badge · 0 bounties</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-blue-400">120</div>
+                        <div class="text-[10px] text-gray-600">points</div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
-            <table class="w-full text-left">
-                <thead>
-                    <tr class="border-b border-slate-50">
-                        <th class="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-400">Rank</th>
-                        <th class="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-400">Member</th>
-                        <th class="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-400">Status</th>
-                        <th class="px-8 py-6 text-xs font-bold uppercase tracking-wider text-slate-400 text-right">XP</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-50">
-                    <tr>
-                        <td class="px-8 py-6 font-bold text-slate-400">#4</td>
-                        <td class="px-8 py-6 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-slate-50 rounded-full"></div>
-                            <span class="font-bold">Emma_Watson</span>
-                        </td>
-                        <td class="px-8 py-6"><span class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-bold uppercase">Pro</span></td>
-                        <td class="px-8 py-6 text-right font-bold">1,850</td>
-                    </tr>
-                    <tr>
-                        <td class="px-8 py-6 font-bold text-slate-400">#5</td>
-                        <td class="px-8 py-6 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-slate-50 rounded-full"></div>
-                            <span class="font-bold">Liam.eth</span>
-                        </td>
-                        <td class="px-8 py-6"><span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase">Active</span></td>
-                        <td class="px-8 py-6 text-right font-bold">1,700</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </body>
 </html>
